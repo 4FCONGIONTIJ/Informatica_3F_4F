@@ -1,6 +1,6 @@
 public class CassaAutomatica {
 
-    private double[] prezzi;
+    private final double[] prezzi;
     private int numeroProdotti;
 
     public CassaAutomatica(int capacita) {
