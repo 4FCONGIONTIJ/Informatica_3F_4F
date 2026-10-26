@@ -7,6 +7,10 @@ class Traccia_Audio{
         this.nome=nome;
         this.durata=durata;
     }
+    public String show(){
+        return "Nome: " + nome + " Durata: " + durata;
+    }
+
 
 }
 class Canzone extends Traccia_Audio{
@@ -19,6 +23,10 @@ class Canzone extends Traccia_Audio{
         this.Autore=Autore;
         this.feat=feat;
     }
+    @Override
+    public String show(){
+        return "Nome: " + nome + " Durata: " + durata + " Autore: " + Autore + " Feat: " + feat;
+    }
 }
 class Podcast extends Traccia_Audio{
 
@@ -30,9 +38,22 @@ class Podcast extends Traccia_Audio{
         this.produttore=produttore;
         this.n_episodio=n_episodio;
     }
+    @Override
+    public String show(){
+        return "Nome: " + nome + " Durata: " + durata + " Produttore: " + produttore + " Numero Episodio: " + n_episodio;
+    }
 }
 public class main{
     public static void main(String[] args) {
-        
+        double durata_c=1.45;
+        double durata_e=1.30;
+        int n_episodio=2;
+        Traccia_Audio playlist[] = {
+            new Canzone("Bartox", durata_c, "Pasox e la bella addormentata", "Ponnyx"),
+            new Podcast("Francesco Ruta", durata_e, "Il podcast dei ritardati", n_episodio)
+        };
+            for(Traccia_Audio brano :playlist){
+                System.out.println(brano.show());
+            }
     }
 }
