@@ -43,6 +43,32 @@ class Podcast extends Traccia_Audio{
         return "Nome: " + nome + " Durata: " + durata + " Produttore: " + produttore + " Numero Episodio: " + n_episodio;
     }
 }
+class lettore extends Traccia_Audio{
+
+    public lettore(String nome, double durata){
+        super(nome, durata);
+    }
+    int volume=5;
+    public int AlzaVolume(){
+        if(volume<10){
+            return volume++;
+        }
+        else{
+            return volume;
+        }
+    }
+    public int AbbassaVolume(){
+        if(volume>0){
+            return volume--;
+        }
+        else{
+            return volume;
+        }
+    }
+    public void riproduci(Traccia_Audio traccia){
+        System.out.println("Sto riproducendo: " + traccia.nome);
+    }
+}
 public class main{
     public static void main(String[] args) {
         double durata_c=1.45;
@@ -50,7 +76,7 @@ public class main{
         int n_episodio=2;
         Traccia_Audio playlist[] = {
             new Canzone("Bartox", durata_c, "Pasox e la bella addormentata", "Ponnyx"),
-            new Podcast("Francesco Ruta", durata_e, "Il podcast dei ritardati", n_episodio)
+            new Podcast("Francesco Ruta", durata_e, "Il podcast dei sbadati", n_episodio)
         };
             for(Traccia_Audio brano :playlist){
                 System.out.println(brano.show());
