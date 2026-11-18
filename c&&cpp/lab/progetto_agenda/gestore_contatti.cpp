@@ -47,8 +47,8 @@ GestoreMirroredRAM::GestoreMirroredRAM() : GestoreRAMOrdinata() {
         cout << "File non trovato. Creo 10 contatti di default...\n";
         char nTemp[50], tTemp[20];
         for (int i = 0; i < 10; i++) {
-            sprintf(nTemp, "Contatto_%d", i);
-            sprintf(tTemp, "000000%d", i);
+            snprintf(nTemp, sizeof(nTemp), "Contatto_%d", i);
+            snprintf(tTemp, sizeof(tTemp), "000000%d", i);
             inserimentoOrdinato(Contatto(nTemp, tTemp));
         }
         salvaSuFile();
