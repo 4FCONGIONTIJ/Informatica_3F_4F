@@ -1,85 +1,106 @@
-class Traccia_Audio{
+class TracciaAudio {
 
     protected String nome;
     protected double durata;
 
-    public Traccia_Audio(String nome, double durata){
-        this.nome=nome;
-        this.durata=durata;
-    }
-    public String show(){
-        return "Nome: " + nome + " Durata: " + durata;
+    public TracciaAudio(String nome, double durata) {
+        this.nome = nome;
+        this.durata = durata;
     }
 
-
+    public String show() {
+        return "Nome: " + nome + " | Durata: " + durata; 
+    }
 }
-class Canzone extends Traccia_Audio{
 
-    private String Autore;
+class Canzone extends TracciaAudio {
+
+    private String autore;
     private String feat;
 
-    public Canzone(String Autore, double durata, String nome,String feat){
+    public Canzone(String nome, String autore, String feat, double durata) {
         super(nome, durata);
-        this.Autore=Autore;
-        this.feat=feat;
+        this.autore = autore;
+        this.feat = feat;
     }
+
     @Override
-    public String show(){
-        return "Nome: " + nome + " Durata: " + durata + " Autore: " + Autore + " Feat: " + feat;
+    public String show() {
+        return super.show() + " | Autore: " + autore + " | Feat: " + feat;
     }
 }
-class Podcast extends Traccia_Audio{
 
-    private String produttore;
-    private int n_episodio;
+class Podcast extends TracciaAudio {
 
-    public Podcast(String produttore, double durata, String nome,int n_episodio){
+    private String conduttore;
+    private String ospite;
+
+    public Podcast(String nome, String conduttore, String ospite, double durata) {
         super(nome, durata);
-        this.produttore=produttore;
-        this.n_episodio=n_episodio;
+        this.conduttore = conduttore;
+        this.ospite = ospite;
     }
+
     @Override
-    public String show(){
-        return "Nome: " + nome + " Durata: " + durata + " Produttore: " + produttore + " Numero Episodio: " + n_episodio;
+    public String show() {
+        return super.show() + " | Conduttore: " + conduttore + " | Ospite: " + ospite;
     }
-}
-class lettore extends Traccia_Audio{
 
-    public lettore(String nome, double durata){
+
+
+}
+    
+ class Lettore extends TracciaAudio {
+
+    public Lettore(String nome, double durata) {
         super(nome, durata);
     }
-    int volume=5;
-    public int AlzaVolume(){
-        if(volume<10){
-            return volume++;
-        }
-        else{
-            return volume;
-        }
-    }
-    public int AbbassaVolume(){
-        if(volume>0){
-            return volume--;
-        }
-        else{
-            return volume;
-        }
-    }
-    public void riproduci(Traccia_Audio traccia){
-        System.out.println("Sto riproducendo: " + traccia.nome);
-    }
-}
-public class main{
-    public static void main(String[] args) {
-        double durata_c=1.45;
-        double durata_e=1.30;
-        int n_episodio=2;
-        Traccia_Audio playlist[] = {
-            new Canzone("Bartox", durata_c, "Pasox e la bella addormentata", "Ponnyx"),
-            new Podcast("Francesco Ruta", durata_e, "Il podcast dei sbadati", n_episodio)
-        };
-            for(Traccia_Audio brano :playlist){
-                System.out.println(brano.show());
+
+        int volume=5;
+        int aumentaVolume(){
+            if(volume<10){
+                volume++;
             }
+            if(volume==10){
+                System.out.println("Volume al massimo");
+            }
+
+            return volume;
+        }
+
+        int diminuisciVolume(){
+            if(volume>0){
+                volume--;
+            }
+             if(volume==0){
+                System.out.println("Volume al minimo");
+            }
+            
+            return volume;
+        }        
+
+
+        void Riproduci(TracciaAudio traccia){
+            System.out.println("Riproduzione: " + traccia.show() + " | Volume: " + volume);
+        }
+
     }
-}
+
+public class main{
+
+    public static void main(String[] args) {
+
+        TracciaAudio playlist[] = {
+            new Canzone("Canzone1", "Autore1", "Feat1", 3.5),
+            new Canzone("Canzone2", "Autore2", "Feat2", 4.0),
+            new Podcast("Podcast1", "Conduttore1", "Ospite1", 30.0),
+            new Lettore("Lettore1", 5.0)
+        };
+
+
+        for (TracciaAudio brano : playlist) {
+            System.out.println(brano.show());
+        }
+        
+    }
+ }
